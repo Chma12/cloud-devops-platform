@@ -1,4 +1,5 @@
 # Cloud & DevOps Platform
+![CI](https://github.com/chma12/cloud-devops-platform/actions/workflows/ci.yml/badge.svg)
 
 Projet personnel : une API REST (Task Manager) dont l'intérêt est le cycle
 DevOps complet autour : tests, conteneurisation, CI/CD, déploiement AWS,
@@ -40,3 +41,11 @@ et les cas d'erreur (404 et validation 422).
 - La base SQLite est stockée dans un volume Docker (`/data`) pour survivre
   au remplacement du conteneur.
 - Le `.dockerignore` exclut secrets, historique Git et bases locales de l'image.
+
+## CI (GitHub Actions)
+À chaque push ou pull request vers `main` :
+1. installation des dépendances et exécution des tests (pytest) ;
+2. construction de l'image Docker (seulement si les tests passent) ;
+3. smoke test : le conteneur démarre et répond sur /health.
+
+Le workflow tourne avec des permissions en lecture seule.
