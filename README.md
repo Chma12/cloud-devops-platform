@@ -31,3 +31,12 @@ Documentation interactive : http://127.0.0.1:8000/docs
 Les tests utilisent une base SQLite en mémoire (fixture dans `tests/conftest.py`),
 isolée de la base de développement. Ils couvrent le /health, le CRUD complet
 et les cas d'erreur (404 et validation 422).
+## Docker
+    docker build -t task-manager-api:1.0 .
+    docker run -d --name task-manager -p 8000:8000 \
+      -v task-data:/data task-manager-api:1.0
+
+- L'application tourne avec un utilisateur non-root.
+- La base SQLite est stockée dans un volume Docker (`/data`) pour survivre
+  au remplacement du conteneur.
+- Le `.dockerignore` exclut secrets, historique Git et bases locales de l'image.
