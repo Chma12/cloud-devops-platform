@@ -24,3 +24,10 @@ Documentation interactive : http://127.0.0.1:8000/docs
 | GET | /tasks/{id} | Consulter une tâche |
 | PUT | /tasks/{id} | Modifier une tâche |
 | DELETE | /tasks/{id} | Supprimer une tâche |
+
+## Tests
+    pytest -v
+
+Les tests utilisent une base SQLite en mémoire (fixture dans `tests/conftest.py`),
+isolée de la base de développement. Ils couvrent le /health, le CRUD complet
+et les cas d'erreur (404 et validation 422).
